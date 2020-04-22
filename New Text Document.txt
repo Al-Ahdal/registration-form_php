@@ -1,0 +1,31 @@
+<?php
+
+$value1 = $_POST['postinput1'];
+$value2 = $_POST['postinput2'];
+
+$dbhost = 'localhost';
+   $dbuser = '********';
+   $dbpass = '********';
+$conn = mysql_connect($dbhost, $dbuser, $dbpass);
+   
+   if(! $conn ) {
+      die('Could not connect: ' . mysql_error());
+   }
+   
+   $sql = "INSERT INTO document_data
+      (column1, column2)
+      VALUES ( '$value1', '$value2')";
+      
+   mysql_select_db('****Database Name***');
+   $retval = mysql_query( $sql, $conn );
+   
+   if(! $retval ) {
+      die('Could not enter data: ' . mysql_error());
+   }
+   
+   echo "New Document data in database successfully\n";
+   echo "<br>";
+   mysql_close($conn);
+
+
+?>
